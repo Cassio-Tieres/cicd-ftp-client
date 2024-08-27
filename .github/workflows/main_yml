@@ -1,0 +1,29 @@
+name: CI-basic FTP
+on:
+  push:
+    branches:
+      - main
+      - master
+jobs:
+  web-deploy:
+    name: Deploy FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código 
+        uses: actions/checkout@v2
+
+      - name: Sincronização de arquivos
+        uses: SamKirkland/FTP-Deploy-Action@4.2.0
+        with:
+          server: ${{ secrets.ftp_server }}
+          username: ${{ secrets.ftp_user }}
+          password: ${{ secrets.ftp_pass }}
+          server-dir: ${{ secrets.server_dir }}
+      
+      - name: Definir status de sucesso
+        if: ${{ success() }}
+        run: echo "OK! Código enviado para produção" | tee status_message.log
+
+      - name: Definir status de error
+        if: ${{ failure() }}
+        run: echo "NOK! Error ao tentar enviar para produção" | tee status_message.log
