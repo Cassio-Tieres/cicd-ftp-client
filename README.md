@@ -37,6 +37,3 @@ Você não precisa fazer nenhum commit para este repositório com as suas config
 
 
 Desenvolvido por: Cássio V. T. Bomfim.
-
-### obs
-O arquivo .yml está sendo enviado via push utilizando um "_yml" ao invés de ".yml" para evitar problemas ao dar push, pois este repositório trata-se apenas de um estudo de caso.
